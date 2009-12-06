@@ -1,25 +1,29 @@
-%define module missingh
+%define module MissingH
 
 Name: haskell-%{module}
-Version: 0.18.1
-Release: %mkrel 6
+Version: 1.1.0.1
+Release: %mkrel 1
 Summary: Large utility library
 Group: Development/Other
 License: GPL
 Url: http://software.complete.org/missingh
-Source: http://software.complete.org/missingh/static/download_area/0.18.1/missingh_%{version}.tar.bz2
+Source: http://software.complete.org/missingh/static/download_area/0.18.1/%{module}-%{version}.tar.gz
 BuildRoot: %_tmppath/%name-%version-%release-root
 BuildRequires: ghc
 BuildRequires: haddock
 BuildRequires: haskell-macros
-BuildRequires: haskell-filepath
-BuildRequires: haskell-hslogger
+BuildRequires: haskell(filepath)
+BuildRequires: haskell(hslogger)
+BuildRequires: haskell(testpack)
+Obsoletes: haskell-missingh < 1.1.0.1
 
 %description
-Large utility library
+MissingH is a library of all sorts of utility functions for Haskell
+programmers. It is written in pure Haskell and thus should be extremely
+portable and easy to use.
 
 %prep
-%setup -q -n %{module}
+%setup -q -n %{module}-%{version}
 
 %build
 %_cabal_build
@@ -40,11 +44,9 @@ rm -fr %{buildroot}/%_datadir/*/doc/
 
 %files
 %defattr(-,root,root)
-%doc dist/doc/html
 %_libdir/*
+%_docdir/%{module}-%{version}
 %_cabal_rpm_files
 
 %clean
 rm -fr %buildroot
-
-
