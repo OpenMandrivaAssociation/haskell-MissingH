@@ -2,7 +2,7 @@
 
 Name: haskell-%{module}
 Version: 1.1.0.1
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: Large utility library
 Group: Development/Other
 License: GPL
